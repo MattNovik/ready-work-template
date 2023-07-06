@@ -1,1 +1,30 @@
 // Here you can add other styles
+.sidebar-nav {
+  scrollbar-color: rgba(45, 64, 94, 0.2) var(--cui-table-bg);
+  scrollbar-width: thin;
+  min-height: 100vh;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(45, 64, 94, 0.2);
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--cui-table-bg);
+  }
+}
+
+.price-list {
+  &__image {
+    object-fit: cover;
+  }
+}

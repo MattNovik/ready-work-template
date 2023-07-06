@@ -50,8 +50,14 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+// Custom
+const PriceList = React.lazy(() => import('./components/PriceList'))
+const Contacts = React.lazy(() => import('./components/Contacts'))
+const TypesList = React.lazy(() => import('./components/TypesList'))
+const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
+
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Главная' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
@@ -95,6 +101,10 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/price-list', name: 'Список услуг и цен', element: PriceList },
+  { path: '/contacts', name: 'Контакты', element: Contacts },
+  { path: '/types-list', name: 'Типы работ', element: TypesList },
+  { path: '/docs-editor', name: 'Документы', element: DocsEditor },
 ]
 
 export default routes

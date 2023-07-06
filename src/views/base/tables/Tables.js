@@ -21,13 +21,10 @@ const Tables = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>React Table</strong> <small>Basic example</small>
+            <strong>Список цен и услуг</strong>
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">
-              Using the most basic table CoreUI, here&#39;s how <code>&lt;CTable&gt;</code>-based
-              tables look in CoreUI.
-            </p>
+            <p className="text-medium-emphasis small">Настройка списка услуги и цен</p>
             <DocsExample href="components/table">
               <CTable>
                 <CTableHead>
@@ -53,7 +50,8 @@ const Tables = () => {
                   </CTableRow>
                   <CTableRow>
                     <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
+                    <CTableDataCell>Larry the Bird</CTableDataCell>
+                    <CTableDataCell>Larry the Bird</CTableDataCell>
                     <CTableDataCell>@twitter</CTableDataCell>
                   </CTableRow>
                 </CTableBody>
