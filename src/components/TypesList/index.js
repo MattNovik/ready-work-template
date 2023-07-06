@@ -122,7 +122,7 @@ const TypesList = () => {
                     Ссылка
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Активност
+                    Активность
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
                 </CTableRow>

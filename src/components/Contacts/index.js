@@ -116,6 +116,18 @@ const Contacts = () => {
                     required
                   />
                 </CCol>
+                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="phoneInput"
+                    aria-describedby="phoneInput"
+                    label="Телефон"
+                    placeholder="Телефон"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                  />
+                </CCol>
               </CRow>
               <CCol sm="auto" className="d-flex align-items-center">
                 <CButton type="submit">Отправить</CButton>
