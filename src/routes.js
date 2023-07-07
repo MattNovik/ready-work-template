@@ -55,6 +55,7 @@ const PriceList = React.lazy(() => import('./components/PriceList'))
 const Contacts = React.lazy(() => import('./components/Contacts'))
 const TypesList = React.lazy(() => import('./components/TypesList'))
 const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
+const PigsFarmSettings = React.lazy(() => import('./components/PigsFarmSettings'))
 
 const routes = [
   { path: '/', exact: true, name: 'Главная' },
@@ -105,6 +106,7 @@ const routes = [
   { path: '/contacts', name: 'Контакты', element: Contacts },
   { path: '/types-list', name: 'Типы работ', element: TypesList },
   { path: '/docs-editor', name: 'Документы', element: DocsEditor },
+  { path: '/pigs-settings', name: 'Свиньи', element: PigsFarmSettings },
 ]
 
 export default routes

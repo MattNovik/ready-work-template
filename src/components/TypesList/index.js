@@ -16,13 +16,25 @@ import {
   CTableDataCell,
   CCloseButton,
   CFormCheck,
+  CFormSelect,
 } from '@coreui/react'
-import { TYPES_LIST } from 'src/mockData'
+import { cilAlignRight } from '@coreui/icons'
+import { TYPES_LIST, GENDER_LIST } from 'src/mockData'
+import CIcon from '@coreui/icons-react'
 
 const TypesList = () => {
   const [nameValue, setNameValue] = useState(null)
   const [linkValue, setLinkValue] = useState(null)
   const [validated, setValidated] = useState(false)
+  const [filterValue, setFilterValue] = useState(null)
+  const [metaTitleValue, setMetaTitleValue] = useState(null)
+  const [metaDescriptionValue, setMetaDescriptionValue] = useState(null)
+  const [h1Value, setH1Value] = useState(null)
+  const [genderValue, setGenderValue] = useState(null)
+  const [externalLinkValue, setExternalLinkValue] = useState(null)
+  const [genitiveNameValue, setGenitiveNameValue] = useState(null)
+  const [genitiveNameXValue, setGenitiveNameXValue] = useState(null)
+
   const [typesList, setTypesList] = useState(null)
   const refForm = useRef(null)
 
@@ -35,12 +47,28 @@ const TypesList = () => {
         name: nameValue,
         link: linkValue,
         acitivty: false,
+        filterValue: filterValue,
+        metaTitleValue: metaTitleValue,
+        h1Value: h1Value,
+        metaDescriptionValue: metaDescriptionValue,
+        genderValue: genderValue,
+        externalLinkValue: externalLinkValue,
+        genitiveNameValue: genitiveNameValue,
+        genitiveNameXValue: genitiveNameXValue,
       }
       copyList.push(newItem)
       setTypesList(copyList)
       setNameValue(null)
       setLinkValue(null)
       setValidated(false)
+      setFilterValue(null)
+      setMetaTitleValue(null)
+      setMetaDescriptionValue(null)
+      setH1Value(null)
+      setExternalLinkValue(null)
+      setGenitiveNameValue(null)
+      setGenitiveNameXValue(null)
+      setGenderValue(null)
       form.reset()
     } else {
       setValidated(true)
@@ -82,7 +110,7 @@ const TypesList = () => {
               onSubmit={handleSubmit}
             >
               <CRow className="gap-3">
-                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput
                     type="text"
                     id="name"
@@ -95,7 +123,7 @@ const TypesList = () => {
                     onChange={(e) => setNameValue(e.target.value)}
                   />
                 </CCol>
-                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput
                     type="text"
                     id="link"
@@ -108,7 +136,122 @@ const TypesList = () => {
                     onChange={(e) => setLinkValue(e.target.value)}
                   />
                 </CCol>
-                <CCol sm="auto" className="d-flex align-items-center">
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="link"
+                    aria-describedby="link"
+                    label="Ссылка"
+                    placeholder="Ссылка"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setLinkValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="metaTitleValue"
+                    aria-describedby="metaTitleValue"
+                    label="metaTitleValue"
+                    placeholder="metaTitleValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setMetaTitleValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormSelect
+                    aria-label="Default select example"
+                    options={[...GENDER_LIST]}
+                    label="Гендер текста"
+                    required
+                    onChange={(e) => setGenderValue(e.target.value)}
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="metaDescriptionValue"
+                    aria-describedby="metaDescriptionValue"
+                    label="metaDescriptionValue"
+                    placeholder="metaDescriptionValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setMetaDescriptionValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="h1Value"
+                    aria-describedby="h1Value"
+                    label="h1Value"
+                    placeholder="h1Value"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setH1Value(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="externalLinkValue"
+                    aria-describedby="externalLinkValue"
+                    label="externalLinkValue"
+                    placeholder="externalLinkValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setExternalLinkValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="genderValue"
+                    aria-describedby="genderValue"
+                    label="genderValue"
+                    placeholder="genderValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setGenderValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="genitiveNameXValue"
+                    aria-describedby="genitiveNameXValue"
+                    label="genitiveNameXValue"
+                    placeholder="genitiveNameXValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setGenitiveNameXValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="genitiveNameValue"
+                    aria-describedby="genitiveNameValue"
+                    label="genitiveNameValue"
+                    placeholder="genitiveNameValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setGenitiveNameValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex align-items-center">
                   <CButton type="submit">Отправить</CButton>
                 </CCol>
               </CRow>
@@ -124,7 +267,39 @@ const TypesList = () => {
                   <CTableHeaderCell scope="col" className="text-center">
                     Активность
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center">
+                    <CButton type="button" className="types-list__popup">
+                      <CIcon icon={cilAlignRight} size="s" />
+                      <div className="types-list__popup-wrapper-list">
+                        <ul className="types-list__popup-list">
+                          {[
+                            'id',
+                            'name',
+                            'link',
+                            'priceSnipept',
+                            'filter',
+                            'metaTitle',
+                            'h1',
+                            'metaDescription',
+                            'gender',
+                            'externalLink',
+                            'genitiveName',
+                            'genitiveNameX',
+                          ].map((item, index) => (
+                            <li className="types-list__popup-item" key={index}>
+                              <CFormCheck
+                                type="radio"
+                                name={item + 'typesListPopup'}
+                                id={item + 'popup'}
+                                value={item}
+                                label={item}
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </CButton>
+                  </CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>

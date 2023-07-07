@@ -61,6 +61,12 @@ const _nav = [
     to: '/docs-editor',
     icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: 'Свиньи',
+    to: '/pigs-settings',
+    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+  },
   /*     {
     component: CNavTitle,
     name: 'Extras',
