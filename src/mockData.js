@@ -94,7 +94,7 @@ const PIGS_SETTINGS = [
     h2: 'Дарим <b>300 рублей</b> на первый заказ!</br><span>У вас есть шанс значительно сэкономить!</span>',
     h2AuthUsers:
       'Сегодня мы дарим <b>до 400 рублей</b> на первый заказ</br><span>У вас есть шанс значительно сэкономить!</span>',
-    bannerValue: 'https://picsum.photos/200/300',
+    banner: 'https://placebear.com/200/300',
     textButton: 'Получить бонус',
     textButtonAuth: 'Получить подарок',
     timeToScript: 60,
@@ -104,13 +104,13 @@ const PIGS_SETTINGS = [
   {
     id: 2,
     name: 'Ловец лидов (закрытие вкладки)',
-    activity: false,
     h1: 'Секундочку… взгляните!',
+    activity: false,
     h1AuthUsers: 'Постойте… останьтесь',
     h2: 'Дарим <b>300 рублей</b> на первый заказ!</br><span>У вас есть шанс значительно сэкономить!</span>',
     h2AuthUsers:
       'Сегодня мы дарим <b>до 400 рублей</b> на первый заказ</br><span>У вас есть шанс значительно сэкономить!</span>',
-    bannerValue: 'https://picsum.photos/200/300',
+    banner: 'https://placebear.com/200/300',
     textButton: 'Получить бонус',
     textButtonAuth: 'Получить подарок',
     timeToScript: 1,
@@ -118,4 +118,20 @@ const PIGS_SETTINGS = [
     pagesDoNotShow: 'contacts,authors',
   },
 ]
-export { SERVICES_LIST, TYPES_LIST, GENDER_LIST, PIGS_SETTINGS }
+
+const PIGS_HEAD_NAMES = {
+  id: ' ',
+  name: 'Название',
+  h1: 'Заголовок',
+  activity: 'Активность',
+  h1AuthUsers: 'Заголовок для авторизированных пользователей',
+  h2: 'Подзаголовок',
+  h2AuthUsers: 'Подзаголовок для авторизированных пользователей',
+  bannerValue: 'Баннер',
+  textButton: 'Текст кнопки',
+  textButtonAuth: 'Текст кнопки для авторизированных пользователей',
+  timeToScript: 'Время до запуска скрипта (секунды)',
+  timeToShowAgain: 'Повторный показ (секунды)',
+  pagesDoNotShow: 'Не показывать на страницах',
+}
+export { SERVICES_LIST, TYPES_LIST, GENDER_LIST, PIGS_SETTINGS, PIGS_HEAD_NAMES }
