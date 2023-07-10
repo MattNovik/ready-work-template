@@ -1,3 +1,4 @@
+import { element } from 'prop-types'
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
@@ -56,6 +57,8 @@ const Contacts = React.lazy(() => import('./components/Contacts'))
 const TypesList = React.lazy(() => import('./components/TypesList'))
 const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
 const PigsFarmSettings = React.lazy(() => import('./components/PigsFarmSettings'))
+const PagesList = React.lazy(() => import('./components/PagesList'))
+const TypesListEditItem = React.lazy(() => import('./components/TypesList/TypesListEditItem'))
 
 const routes = [
   { path: '/', exact: true, name: 'Главная' },
@@ -105,8 +108,19 @@ const routes = [
   { path: '/price-list', name: 'Список услуг и цен', element: PriceList },
   { path: '/contacts', name: 'Контакты', element: Contacts },
   { path: '/types-list', name: 'Типы работ', element: TypesList },
+  {
+    path: '/types-list/edit',
+    name: 'Редактирование',
+    element: TypesListEditItem,
+  },
+  {
+    path: '/types-list/edit/:id',
+    name: 'Тип работы-редактирование',
+    element: TypesListEditItem,
+  },
   { path: '/docs-editor', name: 'Документы', element: DocsEditor },
   { path: '/pigs-settings', name: 'Свиньи', element: PigsFarmSettings },
+  { path: '/pages-list', name: 'Список страниц', element: PagesList },
 ]
 
 export default routes

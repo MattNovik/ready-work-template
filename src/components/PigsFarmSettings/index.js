@@ -122,8 +122,8 @@ const PigsFarmSettings = () => {
               validated={validated}
               ref={refForm}
               className={
-                'd-flex flex-column gap-3 pigs-farm__form' +
-                (formHideStatus ? '' : ' pigs-farm__form--open')
+                'd-flex flex-column gap-3 pigs-farm__form ' +
+                (formHideStatus ? 'pigs-farm__form--hide' : '')
               }
               onSubmit={handleSubmit}
             >
@@ -176,18 +176,7 @@ const PigsFarmSettings = () => {
                     onChange={(e) => setH2Value(e.target.value)}
                   />
                 </CCol>
-                <CCol sm="3" className="d-flex flex-column justify-content-end">
-                  <CFormInput
-                    type="text"
-                    id="h2AuthUsersInput"
-                    placeholder={PIGS_HEAD_NAMES.h2AuthUsers}
-                    required
-                    feedbackValid="Заполнено"
-                    label={PIGS_HEAD_NAMES.h2AuthUsers}
-                    feedbackInvalid="Необходимо заполнить"
-                    onChange={(e) => setH2AuthUsersValue(e.target.value)}
-                  />
-                </CCol>
+
                 <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput
                     type="file"
@@ -223,6 +212,18 @@ const PigsFarmSettings = () => {
                       className="pigs-item__image"
                     />
                   )}
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="h2AuthUsersInput"
+                    placeholder={PIGS_HEAD_NAMES.h2AuthUsers}
+                    required
+                    feedbackValid="Заполнено"
+                    label={PIGS_HEAD_NAMES.h2AuthUsers}
+                    feedbackInvalid="Необходимо заполнить"
+                    onChange={(e) => setH2AuthUsersValue(e.target.value)}
+                  />
                 </CCol>
                 <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput

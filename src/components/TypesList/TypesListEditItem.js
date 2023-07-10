@@ -1,25 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import {
   CRow,
-  CCard,
   CCol,
+  CCard,
   CCardHeader,
   CCardBody,
   CForm,
   CFormInput,
-  CButton,
-  CTable,
-  CTableRow,
-  CTableHead,
-  CTableBody,
-  CTableHeaderCell,
-  CTableDataCell,
   CFormSelect,
+  CButton,
 } from '@coreui/react'
 import { TYPES_LIST, GENDER_LIST } from 'src/mockData'
-import TypesListItem from './TypesListItem'
 
-const TypesList = () => {
+const TypesListEditItem = () => {
+  let { id } = useParams()
   const [nameValue, setNameValue] = useState(null)
   const [linkValue, setLinkValue] = useState(null)
   const [validated, setValidated] = useState(false)
@@ -38,35 +33,7 @@ const TypesList = () => {
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      let copyList = [...typesList]
-      let newItem = {
-        id: typesList[typesList.length - 1]?.id ? typesList[typesList.length - 1].id + 1 : 1,
-        name: nameValue,
-        link: linkValue,
-        acitivty: false,
-        filterValue: filterValue,
-        metaTitleValue: metaTitleValue,
-        h1Value: h1Value,
-        metaDescriptionValue: metaDescriptionValue,
-        genderValue: genderValue,
-        externalLinkValue: externalLinkValue,
-        genitiveNameValue: genitiveNameValue,
-        genitiveNameXValue: genitiveNameXValue,
-      }
-      copyList.push(newItem)
-      setTypesList(copyList)
-      setNameValue(null)
-      setLinkValue(null)
-      setValidated(false)
-      setFilterValue(null)
-      setMetaTitleValue(null)
-      setMetaDescriptionValue(null)
-      setH1Value(null)
-      setExternalLinkValue(null)
-      setGenitiveNameValue(null)
-      setGenitiveNameXValue(null)
-      setGenderValue(null)
-      form.reset()
+      alert('sended')
     } else {
       setValidated(true)
     }
@@ -74,18 +41,20 @@ const TypesList = () => {
     e.stopPropagation()
   }
 
-  const handleRemoveItem = (e) => {
-    const id = e.target.dataset.id
-    let copyList = [...typesList]
-    copyList.splice(
-      copyList.findIndex((item) => item.id === id),
-      1,
-    )
-    setTypesList(copyList)
-  }
-
   useEffect(() => {
-    setTypesList(TYPES_LIST)
+    let indexitem = TYPES_LIST.findIndex((item) => item.id === Number(id))
+    let item = TYPES_LIST[indexitem]
+    console.log(id)
+    setNameValue(item.name)
+    setLinkValue(item.link)
+    setFilterValue(item.filterValue)
+    setMetaTitleValue(item.metaTitleValue)
+    setMetaDescriptionValue(item.metaDescriptionValue)
+    setH1Value(item.h1Value)
+    setGenderValue(item.genderValue)
+    setExternalLinkValue(item.externalLinkValue)
+    setGenitiveNameValue(item.genitiveNameValue)
+    setGenitiveNameXValue(item.genitiveNameXValue)
   }, [])
 
   return (
@@ -93,10 +62,12 @@ const TypesList = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Типы работ</strong>
+            <strong>
+              {'Редактирование - ' +
+                TYPES_LIST[TYPES_LIST.findIndex((item) => item.id === Number(id))].name}
+            </strong>
           </CCardHeader>
-          <CCardBody className="d-flex flex-column gap-3">
-            <p className="text-medium-emphasis small">Здесь вы можете изменить типы работы</p>
+          <CCardBody>
             <CForm
               noValidate
               validated={validated}
@@ -115,6 +86,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={nameValue}
                     onChange={(e) => setNameValue(e.target.value)}
                   />
                 </CCol>
@@ -128,6 +100,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={linkValue}
                     onChange={(e) => setLinkValue(e.target.value)}
                   />
                 </CCol>
@@ -141,6 +114,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={metaTitleValue}
                     onChange={(e) => setMetaTitleValue(e.target.value)}
                   />
                 </CCol>
@@ -152,6 +126,7 @@ const TypesList = () => {
                     required
                     onChange={(e) => setGenderValue(e.target.value)}
                     feedbackValid="Заполнено"
+                    value={genderValue}
                     feedbackInvalid="Необходимо заполнить"
                   />
                 </CCol>
@@ -165,6 +140,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={metaDescriptionValue}
                     onChange={(e) => setMetaDescriptionValue(e.target.value)}
                   />
                 </CCol>
@@ -178,6 +154,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={h1Value}
                     onChange={(e) => setH1Value(e.target.value)}
                   />
                 </CCol>
@@ -191,6 +168,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={externalLinkValue}
                     onChange={(e) => setExternalLinkValue(e.target.value)}
                   />
                 </CCol>
@@ -204,6 +182,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={genitiveNameXValue}
                     onChange={(e) => setGenitiveNameXValue(e.target.value)}
                   />
                 </CCol>
@@ -217,6 +196,7 @@ const TypesList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
+                    value={genitiveNameValue}
                     onChange={(e) => setGenitiveNameValue(e.target.value)}
                   />
                 </CCol>
@@ -225,36 +205,6 @@ const TypesList = () => {
                 </CCol>
               </CRow>
             </CForm>
-            <CTable>
-              <CTableHead>
-                <CTableRow>
-                  <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-start">
-                    Ссылка
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
-                    Активность
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-start"></CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-start"></CTableHeaderCell>
-                </CTableRow>
-              </CTableHead>
-              <CTableBody>
-                {typesList && typesList.length ? (
-                  typesList.map((item, index) => (
-                    <TypesListItem key={index} item={item} handleRemoveItem={handleRemoveItem} />
-                  ))
-                ) : (
-                  <CTableRow>
-                    <CTableHeaderCell scope="row" className="align-middle"></CTableHeaderCell>
-                    <CTableDataCell colSpan={4} className="text-center">
-                      Пустой список
-                    </CTableDataCell>
-                  </CTableRow>
-                )}
-              </CTableBody>
-            </CTable>
           </CCardBody>
         </CCard>
       </CCol>
@@ -262,4 +212,4 @@ const TypesList = () => {
   )
 }
 
-export default TypesList
+export default TypesListEditItem

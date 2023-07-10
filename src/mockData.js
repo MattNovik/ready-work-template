@@ -19,6 +19,36 @@ const SERVICES_LIST = [
   },
 ]
 
+const PAGES_LIST = [
+  {
+    id: 1,
+    name: 'Дипломная работа',
+    text: '',
+    metaTitle: '',
+    metaDescription: '',
+    h1: '',
+    activity: true,
+  },
+  {
+    id: 2,
+    name: 'Не Дипломная работа',
+    text: '',
+    metaTitle: '',
+    metaDescription: '',
+    h1: '',
+    activity: true,
+  },
+  {
+    id: 3,
+    name: 'До Дипломная работа',
+    text: '',
+    metaTitle: '',
+    metaDescription: '',
+    h1: '',
+    activity: true,
+  },
+]
+
 const TYPES_LIST = [
   {
     id: 1,
@@ -134,4 +164,4 @@ const PIGS_HEAD_NAMES = {
   timeToShowAgain: 'Повторный показ (секунды)',
   pagesDoNotShow: 'Не показывать на страницах',
 }
-export { SERVICES_LIST, TYPES_LIST, GENDER_LIST, PIGS_SETTINGS, PIGS_HEAD_NAMES }
+export { SERVICES_LIST, TYPES_LIST, GENDER_LIST, PIGS_SETTINGS, PIGS_HEAD_NAMES, PAGES_LIST }

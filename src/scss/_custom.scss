@@ -34,23 +34,39 @@
   }
 
   &__form {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
-    transition: visibility .3s ease, opacity .3s ease;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
 
-    &--open {
-      height: auto;
-      visibility: visible;
-      opacity: 1;
+    &--hide {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      border: 0;
+      padding: 0;
+      white-space: nowrap;
+      -webkit-clip-path: inset(100%);
+      clip-path: inset(100%);
+      clip: rect(0 0 0 0);
+      overflow: hidden;
     }
   }
 
   &__button-open {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
-    transition: visibility .3s ease, opacity .3s ease;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
   }
 }
 

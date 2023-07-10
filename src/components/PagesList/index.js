@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
   CRow,
   CCol,
@@ -16,54 +16,49 @@ import {
   CFormInput,
   CButton,
 } from '@coreui/react'
-import { SERVICES_LIST } from 'src/mockData'
-import PriceListItem from './PriceListItem'
+import { PAGES_LIST } from 'src/mockData'
+import PagesListItem from './PagesListItem'
 
-const PriceList = () => {
-  const [imageFile, setImageFile] = useState(null)
+const PagesList = () => {
   const [nameValue, setNameValue] = useState(null)
-  const [priceValue, setPriceValue] = useState(null)
-  const [priceSnippetValue, setPriceSnippetValue] = useState(null)
-  const [listServices, setListServices] = useState(null)
-  const [imageSrc, setImageSrc] = useState(null)
+  const [textValue, setTextValue] = useState(null)
+  const [metaTitleValue, setMetaTitleValue] = useState(null)
+  const [metaDescriptionValue, setMetaDescriptionValue] = useState(null)
+  const [h1Value, setH1Value] = useState(null)
+  const [lisPages, setListPages] = useState(null)
   const [validated, setValidated] = useState(false)
   const refForm = useRef(null)
 
-  const preloadImage = (e) => {
-    const [file] = e.target.files
-    setImageFile(file)
-    setImageSrc(URL.createObjectURL(file))
-  }
-
   const removeItem = (e) => {
     const id = e.target.dataset.id
-    let copyList = [...listServices]
+    let copyList = [...lisPages]
     copyList.splice(
       copyList.findIndex((item) => item.id === id),
       1,
     )
-    setListServices(copyList)
+    setListPages(copyList)
   }
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      let copyList = [...listServices]
+      let copyList = [...lisPages]
       let newItem = {
-        id: listServices[listServices.length - 1]?.id
-          ? listServices[listServices.length - 1].id + 1
-          : 1,
+        id: lisPages[lisPages.length - 1]?.id ? lisPages[lisPages.length - 1].id + 1 : 1,
         name: nameValue,
-        price: priceValue,
-        priceSnipept: priceSnippetValue,
+        text: textValue,
+        metaTitle: metaTitleValue,
+        metaDescription: metaDescriptionValue,
+        h1: h1Value,
+        activity: true,
       }
       copyList.push(newItem)
-      setListServices(copyList)
-      setImageFile(null)
+      setListPages(copyList)
       setNameValue(null)
-      setPriceValue(null)
-      setPriceSnippetValue(null)
-      setImageSrc(null)
+      setTextValue(null)
+      setMetaTitleValue(null)
+      setMetaDescriptionValue(null)
+      setH1Value(null)
       setValidated(false)
       form.reset()
     } else {
@@ -74,7 +69,7 @@ const PriceList = () => {
   }
 
   useEffect(() => {
-    setListServices(SERVICES_LIST)
+    setListPages(PAGES_LIST)
   }, [])
 
   return (
@@ -91,36 +86,11 @@ const PriceList = () => {
             <CForm noValidate validated={validated} onSubmit={handleSubmit} ref={refForm}>
               <CRow className="gap-3">
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="imageLoad">Загрузить изображение</CFormLabel>
-                  <CFormInput
-                    type="file"
-                    id="imageLoad"
-                    accept="image/png, image/gif, image/jpeg"
-                    aria-describedby="imageLoad"
-                    feedbackValid="Загружено"
-                    feedbackInvalid="Необходимо загрузить"
-                    aria-label="Upload"
-                    onChange={(e) => preloadImage(e)}
-                    required
-                  />
-                </CCol>
-                <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  {imageSrc ? (
-                    <img
-                      src={imageSrc}
-                      width="60"
-                      height="60"
-                      alt=""
-                      className="price-list__image"
-                    />
-                  ) : null}
-                </CCol>
-                <CCol sm="auto" className="d-flex flex-column justify-content-end">
                   <CFormLabel htmlFor="nameInput">Название</CFormLabel>
                   <CFormInput
                     type="text"
                     id="nameInput"
-                    placeholder="Название услуги"
+                    placeholder="Название страницы"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
@@ -128,27 +98,51 @@ const PriceList = () => {
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="priceInput">Цена</CFormLabel>
+                  <CFormLabel htmlFor="textInput">Текст</CFormLabel>
                   <CFormInput
                     type="text"
-                    id="priceInput"
-                    placeholder="Цена"
+                    id="textInput"
+                    placeholder="Текст"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
-                    onChange={(e) => setPriceValue(e.target.value)}
+                    onChange={(e) => setTextValue(e.target.value)}
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="priceSnippetInput">Цена в сниппет</CFormLabel>
+                  <CFormLabel htmlFor="metaDescriptionInput">Мета описание</CFormLabel>
                   <CFormInput
                     type="text"
-                    id="priceSnippetInput"
-                    placeholder="Цена в сниппет"
+                    id="metaDescriptionInput"
+                    placeholder="Мета описание"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
-                    onChange={(e) => setPriceSnippetValue(e.target.value)}
+                    onChange={(e) => setMetaDescriptionValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                  <CFormLabel htmlFor="metaTitleInput">Мета название</CFormLabel>
+                  <CFormInput
+                    type="text"
+                    id="metaTitleInput"
+                    placeholder="Мета название"
+                    required
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    onChange={(e) => setMetaTitleValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                  <CFormLabel htmlFor="h1Input">Заголовок</CFormLabel>
+                  <CFormInput
+                    type="text"
+                    id="h1Input"
+                    placeholder="Заголовок"
+                    required
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    onChange={(e) => setH1Value(e.target.value)}
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex align-items-center">
@@ -162,21 +156,28 @@ const PriceList = () => {
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Цена
+                    Текст
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Цена в сниппете
+                    Мета название
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Изображение
+                    Мета описание
                   </CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center">
+                    Заголовок
+                  </CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center">
+                    Активность
+                  </CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {listServices && listServices.length ? (
-                  listServices.map((item, index) => (
-                    <PriceListItem key={index} item={item} removeItem={removeItem} />
+                {lisPages && lisPages.length ? (
+                  lisPages.map((item, index) => (
+                    <PagesListItem key={index} item={item} removeItem={removeItem} />
                   ))
                 ) : (
                   <CTableRow>
@@ -195,4 +196,4 @@ const PriceList = () => {
   )
 }
 
-export default PriceList
+export default PagesList
