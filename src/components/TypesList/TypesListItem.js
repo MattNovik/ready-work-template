@@ -1,5 +1,5 @@
 import React from 'react'
-import { CTableRow, CTableDataCell, CFormCheck, CCloseButton } from '@coreui/react'
+import { CTableRow, CTableDataCell, CFormCheck, CCloseButton, CButton } from '@coreui/react'
 import { Link } from 'react-router-dom'
 
 const TypesListItem = (item, handleRemoveItem) => {
@@ -17,7 +17,11 @@ const TypesListItem = (item, handleRemoveItem) => {
         <CCloseButton data-id={item.item.id} onClick={item.handleRemoveItem} />
       </CTableDataCell>
       <CTableDataCell>
-        <Link to={'/types-list/edit/' + item.item.id}>Изменить </Link>
+        <CButton type="button">
+          <Link to={'/types-list/edit/' + item.item.id} className="text-light text-decoration-none">
+            Изменить
+          </Link>
+        </CButton>
       </CTableDataCell>
     </CTableRow>
   )

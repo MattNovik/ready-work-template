@@ -171,6 +171,7 @@ const PriceList = () => {
                     Изображение
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>

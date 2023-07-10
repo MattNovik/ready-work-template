@@ -73,6 +73,18 @@ const _nav = [
     to: '/pages-list',
     icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: 'Меню футер',
+    to: '/bottom-menu-list',
+    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Поисковые фразы',
+    to: '/search-phrases-list',
+    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+  },
   /*     {
     component: CNavTitle,
     name: 'Extras',

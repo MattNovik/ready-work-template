@@ -59,6 +59,8 @@ const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
 const PigsFarmSettings = React.lazy(() => import('./components/PigsFarmSettings'))
 const PagesList = React.lazy(() => import('./components/PagesList'))
 const TypesListEditItem = React.lazy(() => import('./components/TypesList/TypesListEditItem'))
+const BottomMenu = React.lazy(() => import('./components/BottomMenu'))
+const SearchPhrases = React.lazy(() => import('./components/SearchPhrases'))
 
 const routes = [
   { path: '/', exact: true, name: 'Главная' },
@@ -121,6 +123,8 @@ const routes = [
   { path: '/docs-editor', name: 'Документы', element: DocsEditor },
   { path: '/pigs-settings', name: 'Свиньи', element: PigsFarmSettings },
   { path: '/pages-list', name: 'Список страниц', element: PagesList },
+  { path: '/bottom-menu-list', name: 'Меню футера', element: BottomMenu },
+  { path: '/search-phrases-list', name: 'Поисковые фразы', element: SearchPhrases },
 ]
 
 export default routes
