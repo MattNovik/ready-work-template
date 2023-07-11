@@ -7,6 +7,7 @@ import {
   CFormInput,
   CButton,
 } from '@coreui/react'
+import Api from 'src/Api/Api'
 
 const PriceListItem = (item, removeItem) => {
   const [imageFile, setImageFile] = useState(item.item.image)
@@ -16,13 +17,15 @@ const PriceListItem = (item, removeItem) => {
   const [imageSrc, setImageSrc] = useState(item.item.image)
 
   const handleSubmit = () => {
-    let datasToSend = {
-      id: item.item.id,
-      name: nameValue,
-      price: priceValue,
-      price_snipper: priceSnippetValue,
-    }
-    alert(JSON.stringify(datasToSend))
+    let formData = new FormData()
+
+    formData.append('name', nameValue)
+    formData.append('price', priceValue)
+    formData.append('snippet_price', priceSnippetValue)
+
+    Api.updateItemService(item.item.id, formData)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
   }
 
   return (
@@ -70,7 +73,7 @@ const PriceListItem = (item, removeItem) => {
         </CButton>
       </CTableHeaderCell>
       <CTableHeaderCell className="align-middle text-center">
-        <CCloseButton data-id={item.id} onClick={(e) => item.removeItem(e)} />
+        <CCloseButton data-id={item.item.id} onClick={(e) => item.removeItem(e)} />
       </CTableHeaderCell>
     </CTableRow>
   )

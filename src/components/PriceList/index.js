@@ -18,6 +18,7 @@ import {
 } from '@coreui/react'
 import { SERVICES_LIST } from 'src/mockData'
 import PriceListItem from './PriceListItem'
+import Api from 'src/Api/Api'
 
 const PriceList = () => {
   const [imageFile, setImageFile] = useState(null)
@@ -36,36 +37,53 @@ const PriceList = () => {
   }
 
   const removeItem = (e) => {
-    const id = e.target.dataset.id
-    let copyList = [...listServices]
-    copyList.splice(
-      copyList.findIndex((item) => item.id === id),
-      1,
-    )
-    setListServices(copyList)
+    const id = e.target.closest('button').dataset.id
+    Api.deleteItemService(id)
+      .then((response) => {
+        console.log(response)
+        let copyList = [...listServices]
+        copyList.splice(
+          copyList.findIndex((item) => item.id === id),
+          1,
+        )
+        setListServices(copyList)
+      })
+      .catch((error) => console.log(error))
   }
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      let copyList = [...listServices]
-      let newItem = {
-        id: listServices[listServices.length - 1]?.id
-          ? listServices[listServices.length - 1].id + 1
-          : 1,
-        name: nameValue,
-        price: priceValue,
-        priceSnipept: priceSnippetValue,
-      }
-      copyList.push(newItem)
-      setListServices(copyList)
-      setImageFile(null)
-      setNameValue(null)
-      setPriceValue(null)
-      setPriceSnippetValue(null)
-      setImageSrc(null)
-      setValidated(false)
-      form.reset()
+      let formData = new FormData()
+
+      formData.append('name', nameValue)
+      formData.append('price', priceValue)
+      formData.append('snippet_price', priceSnippetValue)
+      formData.append('image', imageFile)
+
+      Api.sendNewService(formData)
+        .then((response) => {
+          console.log(response)
+          let copyList = [...listServices]
+          let newItem = {
+            id: listServices[listServices.length - 1]?.id
+              ? listServices[listServices.length - 1].id + 1
+              : 1,
+            name: nameValue,
+            price: priceValue,
+            priceSnipept: priceSnippetValue,
+          }
+          copyList.push(newItem)
+          setListServices(copyList)
+          setImageFile(null)
+          setNameValue(null)
+          setPriceValue(null)
+          setPriceSnippetValue(null)
+          setImageSrc(null)
+          setValidated(false)
+          form.reset()
+        })
+        .catch((error) => console.log(error))
     } else {
       setValidated(true)
     }
@@ -75,6 +93,11 @@ const PriceList = () => {
 
   useEffect(() => {
     setListServices(SERVICES_LIST)
+    Api.getListServices()
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => console.log(error))
   }, [])
 
   return (
@@ -95,7 +118,7 @@ const PriceList = () => {
                   <CFormInput
                     type="file"
                     id="imageLoad"
-                    accept="image/png, image/gif, image/jpeg"
+                    accept="image/png, image/gif, image/jpeg, image/svg, image/jpg"
                     aria-describedby="imageLoad"
                     feedbackValid="Загружено"
                     feedbackInvalid="Необходимо загрузить"

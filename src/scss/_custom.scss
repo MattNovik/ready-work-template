@@ -28,6 +28,11 @@
     object-fit: cover;
   }
 }
+
+.card-body {
+  overflow: hidden;
+}
+
 .pigs-farm {
   & .form-label {
     font-weight: 700;

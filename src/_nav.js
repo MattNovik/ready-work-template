@@ -1,6 +1,20 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilAnimal, cilDrop, cilPizza, cilPuzzle, cilSpeedometer, cilStar } from '@coreui/icons'
+import {
+  cilAnimal,
+  cilDrop,
+  cilPizza,
+  cilPuzzle,
+  cilSpeedometer,
+  cilStar,
+  cilBadge,
+  cilHamburgerMenu,
+  cilAsteriskCircle,
+  cilFeaturedPlaylist,
+  cilFindInPage,
+  cilPhone,
+  cilOpentype,
+} from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
@@ -47,43 +61,43 @@ const _nav = [
     component: CNavItem,
     name: 'Контакты',
     to: '/contacts',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPhone} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Типы работ',
     to: '/types-list',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilOpentype} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Документы',
     to: '/docs-editor',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilFeaturedPlaylist} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Свиньи',
     to: './pigs-settings',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilAsteriskCircle} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Список страниц',
     to: '/pages-list',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilFindInPage} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Меню футер',
     to: '/bottom-menu-list',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilHamburgerMenu} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Поисковые фразы',
     to: '/search-phrases-list',
-    icon: <CIcon icon={cilAnimal} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBadge} customClassName="nav-icon" />,
   },
   /*     {
     component: CNavTitle,

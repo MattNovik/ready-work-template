@@ -1,12 +1,28 @@
 import axios from 'axios'
 
 export const apiClient = axios.create({
-  baseURL: 'https://back.studuniverse.ru',
+  baseURL: 'https://stuservis.ru/api/services',
   withCredentials: true, // required to handle the CSRF token
 })
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  async getStartdata() {
+  getListServices() {
+    return apiClient.get('/services')
+  },
+  getItemServices(id) {
+    return apiClient.get('/services/' + id)
+  },
+  sendNewService(payload) {
+    return apiClient.post('/services', payload)
+  },
+  updateItemService(id, payload) {
+    return apiClient.put('/services/' + id, payload)
+  },
+  deleteItemService(id) {
+    return apiClient.delete('/services/' + id)
+  },
+  /* async getStartdata() {
     return await apiClient.get('/api/v1/user/start')
   },
   async getSLkInfo() {
@@ -35,5 +51,5 @@ export default {
       page ? '/api/v1/finance' + '?page=' + page : '/api/v1/finance',
       payload ? payload : null,
     )
-  },
+  }, */
 }
