@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 export const apiClient = axios.create({
-  baseURL: 'https://stuservis.ru/api/services',
-  withCredentials: true, // required to handle the CSRF token
+  baseURL: 'https://stuservis.ru/api',
 })
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -21,6 +20,33 @@ export default {
   },
   deleteItemService(id) {
     return apiClient.delete('/services/' + id)
+  },
+  getListSettings() {
+    return apiClient.get('/settings')
+  },
+  sendSettings(payload) {
+    return apiClient.post('/settings', payload)
+  },
+  updateItemSettings(name, payload) {
+    return apiClient.put('/settings/' + name, payload)
+  },
+  deleteItemSettings(name) {
+    return apiClient.delete('/settings/' + name)
+  },
+  getCategoriesList() {
+    return apiClient.get('/categories/')
+  },
+  getCategoriesItem(id) {
+    return apiClient.get('/categories/' + id)
+  },
+  sendCategoriesItem(payload) {
+    return apiClient.post('/categories/', payload)
+  },
+  updateCategoriesItem(id, payload) {
+    return apiClient.put('/categories/' + id, payload)
+  },
+  deleteCategoriesItem(id) {
+    return apiClient.delete('/categories/' + id)
   },
   /* async getStartdata() {
     return await apiClient.get('/api/v1/user/start')

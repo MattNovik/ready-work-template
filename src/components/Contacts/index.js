@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   CRow,
   CCard,
@@ -9,14 +9,55 @@ import {
   CFormInput,
   CButton,
 } from '@coreui/react'
+import Api from 'src/Api/Api'
 
 const Contacts = () => {
+  const [entityValue, setEntityValue] = useState(null)
+  const [workDayValue, setWorkDayValue] = useState(null)
+  const [workWeekEndValue, setWorkWeekEndValue] = useState(null)
+  const [innValue, setInnValue] = useState(null)
+  const [ogrnValue, setOgrnValue] = useState(null)
+  const [adressValue, setAdressValue] = useState(null)
+  const [phoneValue, setPhoneValue] = useState(null)
   const [validated, setValidated] = useState(false)
   const refForm = useRef(null)
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
+      let dataToSend = [
+        {
+          name: 'entity',
+          value: entityValue,
+        },
+        {
+          name: 'work-day',
+          value: workDayValue,
+        },
+        {
+          name: 'work-week-end',
+          value: workWeekEndValue,
+        },
+        {
+          name: 'inn',
+          value: innValue,
+        },
+        {
+          name: 'ogrn',
+          value: ogrnValue,
+        },
+        {
+          name: 'adress',
+          value: adressValue,
+        },
+        {
+          name: 'phone',
+          value: phoneValue,
+        },
+      ]
+      Api.sendSettings(dataToSend)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error))
       setValidated(false)
       form.reset()
     } else {
@@ -25,6 +66,21 @@ const Contacts = () => {
     e.preventDefault()
     e.stopPropagation()
   }
+
+  useEffect(() => {
+    Api.getListSettings()
+      .then((response) => {
+        console.log(response)
+        setEntityValue(response.data.data['entity'])
+        setWorkDayValue(response.data.data['work-day'])
+        setWorkWeekEndValue(response.data.data['work-week-end'])
+        setInnValue(response.data.data['inn'])
+        setOgrnValue(response.data.data['ogrn'])
+        setAdressValue(response.data.data['adress'])
+        setPhoneValue(response.data.data['phone'])
+      })
+      .catch((error) => console.log(error))
+  }, [])
   return (
     <CRow>
       <CCol xs={12}>
@@ -53,6 +109,8 @@ const Contacts = () => {
                     placeholder="Наименование юр.лица"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={entityValue}
+                    onChange={(e) => setEntityValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -65,6 +123,8 @@ const Contacts = () => {
                     placeholder="График работы (пн-пт)"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={workDayValue}
+                    onChange={(e) => setWorkDayValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -77,6 +137,8 @@ const Contacts = () => {
                     placeholder="График работы (св-вс)"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={workWeekEndValue}
+                    onChange={(e) => setWorkWeekEndValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -89,6 +151,8 @@ const Contacts = () => {
                     placeholder="ИНН"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={innValue}
+                    onChange={(e) => setInnValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -101,6 +165,8 @@ const Contacts = () => {
                     placeholder="ОГРН"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={ogrnValue}
+                    onChange={(e) => setOgrnValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -113,6 +179,8 @@ const Contacts = () => {
                     placeholder="Адрес"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={adressValue}
+                    onChange={(e) => setAdressValue(e.target.value)}
                     required
                   />
                 </CCol>
@@ -125,6 +193,8 @@ const Contacts = () => {
                     placeholder="Телефон"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={phoneValue}
+                    onChange={(e) => setPhoneValue(e.target.value)}
                     required
                   />
                 </CCol>

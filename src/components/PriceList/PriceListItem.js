@@ -13,7 +13,7 @@ const PriceListItem = (item, removeItem) => {
   const [imageFile, setImageFile] = useState(item.item.image)
   const [nameValue, setNameValue] = useState(item.item.name)
   const [priceValue, setPriceValue] = useState(item.item.price)
-  const [priceSnippetValue, setPriceSnippetValue] = useState(item.item.priceSnipept)
+  const [priceSnippetValue, setPriceSnippetValue] = useState(item.item['snippet_price'])
   const [imageSrc, setImageSrc] = useState(item.item.image)
 
   const handleSubmit = () => {
@@ -59,13 +59,7 @@ const PriceListItem = (item, removeItem) => {
         />
       </CTableDataCell>
       <CTableDataCell className="align-middle text-center">
-        <img
-          src={'https://placebear.com/200/300'}
-          width="60"
-          height="60"
-          alt=""
-          className="price-list__image"
-        />
+        <img src={imageSrc} width="60" height="60" alt="" className="price-list__image" />
       </CTableDataCell>
       <CTableHeaderCell className="align-middle text-center">
         <CButton type="button" onClick={() => handleSubmit()}>

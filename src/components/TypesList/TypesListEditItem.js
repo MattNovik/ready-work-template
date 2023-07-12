@@ -12,6 +12,7 @@ import {
   CButton,
 } from '@coreui/react'
 import { TYPES_LIST, GENDER_LIST } from 'src/mockData'
+import Api from 'src/Api/Api'
 
 const TypesListEditItem = () => {
   let { id } = useParams()
@@ -27,13 +28,29 @@ const TypesListEditItem = () => {
   const [genitiveNameValue, setGenitiveNameValue] = useState(null)
   const [genitiveNameXValue, setGenitiveNameXValue] = useState(null)
 
-  const [typesList, setTypesList] = useState(null)
   const refForm = useRef(null)
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      alert('sended')
+      let dataToSend = {
+        url: linkValue,
+        activity: false,
+        filter: filterValue,
+        meta_title: metaTitleValue,
+        h1: h1Value,
+        meta_description: metaDescriptionValue,
+        gender: genderValue,
+        external_link: externalLinkValue,
+        genitive_name: genitiveNameValue,
+        genitive_name_x: genitiveNameXValue,
+      }
+      Api.updateCategoriesItem(id, dataToSend)
+        .then((response) => {
+          console.log(response)
+          alert('sended')
+        })
+        .catch((error) => console.log(error))
     } else {
       setValidated(true)
     }
@@ -42,19 +59,21 @@ const TypesListEditItem = () => {
   }
 
   useEffect(() => {
-    let indexitem = TYPES_LIST.findIndex((item) => item.id === Number(id))
-    let item = TYPES_LIST[indexitem]
-    console.log(id)
-    setNameValue(item.name)
-    setLinkValue(item.link)
-    setFilterValue(item.filterValue)
-    setMetaTitleValue(item.metaTitleValue)
-    setMetaDescriptionValue(item.metaDescriptionValue)
-    setH1Value(item.h1Value)
-    setGenderValue(item.genderValue)
-    setExternalLinkValue(item.externalLinkValue)
-    setGenitiveNameValue(item.genitiveNameValue)
-    setGenitiveNameXValue(item.genitiveNameXValue)
+    Api.getCategoriesItem(id)
+      .then((response) => {
+        console.log(response)
+        setNameValue(response.data.data.h1)
+        setLinkValue(response.data.data.url)
+        setFilterValue(response.data.data.filter)
+        setMetaTitleValue(response.data.data.meta_title)
+        setMetaDescriptionValue(response.data.data.meta_description)
+        setH1Value(response.data.data.h1)
+        setGenderValue(response.data.data.gender)
+        setExternalLinkValue(response.data.data.external_link)
+        setGenitiveNameValue(response.data.data.genitive_name)
+        setGenitiveNameXValue(response.data.data.genitive_name_x)
+      })
+      .catch((error) => console.log(error))
   }, [])
 
   return (
@@ -62,10 +81,7 @@ const TypesListEditItem = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>
-              {'Редактирование - ' +
-                TYPES_LIST[TYPES_LIST.findIndex((item) => item.id === Number(id))].name}
-            </strong>
+            <strong>{'Редактирование - ' + nameValue}</strong>
           </CCardHeader>
           <CCardBody>
             <CForm
@@ -76,20 +92,6 @@ const TypesListEditItem = () => {
               onSubmit={handleSubmit}
             >
               <CRow className="gap-3">
-                <CCol sm="3" className="d-flex flex-column justify-content-end">
-                  <CFormInput
-                    type="text"
-                    id="name"
-                    aria-describedby="name"
-                    label="Название"
-                    placeholder="Название"
-                    feedbackValid="Заполнено"
-                    feedbackInvalid="Необходимо заполнить"
-                    required
-                    value={nameValue}
-                    onChange={(e) => setNameValue(e.target.value)}
-                  />
-                </CCol>
                 <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput
                     type="text"
@@ -128,6 +130,20 @@ const TypesListEditItem = () => {
                     feedbackValid="Заполнено"
                     value={genderValue}
                     feedbackInvalid="Необходимо заполнить"
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="filterValue"
+                    aria-describedby="filterValue"
+                    label="filterValue"
+                    placeholder="filterValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    value={filterValue}
+                    onChange={(e) => setFilterValue(e.target.value)}
                   />
                 </CCol>
                 <CCol sm="3" className="d-flex flex-column justify-content-end">

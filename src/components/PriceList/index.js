@@ -29,6 +29,7 @@ const PriceList = () => {
   const [imageSrc, setImageSrc] = useState(null)
   const [validated, setValidated] = useState(false)
   const refForm = useRef(null)
+  const [inputTypeFileValid, setInputTypeFileValid] = useState(null)
 
   const preloadImage = (e) => {
     const [file] = e.target.files
@@ -53,7 +54,7 @@ const PriceList = () => {
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
-    if (form.checkValidity() === true) {
+    if (form.checkValidity() === true && imageFile && imageFile.size <= 2097152) {
       let formData = new FormData()
 
       formData.append('name', nameValue)
@@ -66,12 +67,11 @@ const PriceList = () => {
           console.log(response)
           let copyList = [...listServices]
           let newItem = {
-            id: listServices[listServices.length - 1]?.id
-              ? listServices[listServices.length - 1].id + 1
-              : 1,
-            name: nameValue,
-            price: priceValue,
-            priceSnipept: priceSnippetValue,
+            id: response.data.data.id,
+            name: response.data.data,
+            price: response.data.data,
+            snippet_price: response.data.data,
+            image: response.data.data.image,
           }
           copyList.push(newItem)
           setListServices(copyList)
@@ -80,6 +80,7 @@ const PriceList = () => {
           setPriceValue(null)
           setPriceSnippetValue(null)
           setImageSrc(null)
+
           setValidated(false)
           form.reset()
         })
@@ -92,10 +93,9 @@ const PriceList = () => {
   }
 
   useEffect(() => {
-    setListServices(SERVICES_LIST)
     Api.getListServices()
       .then((response) => {
-        console.log(response)
+        setListServices(response.data.data)
       })
       .catch((error) => console.log(error))
   }, [])
@@ -123,6 +123,7 @@ const PriceList = () => {
                     feedbackValid="Загружено"
                     feedbackInvalid="Необходимо загрузить"
                     aria-label="Upload"
+                    valid={inputTypeFileValid ? true : false}
                     onChange={(e) => preloadImage(e)}
                     required
                   />

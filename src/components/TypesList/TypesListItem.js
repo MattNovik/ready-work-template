@@ -8,10 +8,10 @@ const TypesListItem = (item, handleRemoveItem) => {
       <CTableDataCell scope="row" className="align-middle">
         {item.item.id}
       </CTableDataCell>
-      <CTableDataCell className="align-middle">{item.item.name}</CTableDataCell>
-      <CTableDataCell className="align-middle text-start">{item.item.link}</CTableDataCell>
+      <CTableDataCell className="align-middle">{item.item.h1}</CTableDataCell>
+      <CTableDataCell className="align-middle text-start">{item.item.url}</CTableDataCell>
       <CTableDataCell className="align-middle text-center">
-        <CFormCheck id={'activity' + item.item.id} disabled checked={item.item.activity} />
+        <CFormCheck id={'activity' + item.item.id} disabled checked={!!item.item.activity} />
       </CTableDataCell>
       <CTableDataCell className="align-middle text-center">
         <CCloseButton data-id={item.item.id} onClick={item.handleRemoveItem} />

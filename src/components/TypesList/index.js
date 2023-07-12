@@ -18,6 +18,7 @@ import {
 } from '@coreui/react'
 import { TYPES_LIST, GENDER_LIST } from 'src/mockData'
 import TypesListItem from './TypesListItem'
+import Api from 'src/Api/Api'
 
 const TypesList = () => {
   const [nameValue, setNameValue] = useState(null)
@@ -38,35 +39,51 @@ const TypesList = () => {
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      let copyList = [...typesList]
-      let newItem = {
-        id: typesList[typesList.length - 1]?.id ? typesList[typesList.length - 1].id + 1 : 1,
-        name: nameValue,
-        link: linkValue,
-        acitivty: false,
-        filterValue: filterValue,
-        metaTitleValue: metaTitleValue,
-        h1Value: h1Value,
-        metaDescriptionValue: metaDescriptionValue,
-        genderValue: genderValue,
-        externalLinkValue: externalLinkValue,
-        genitiveNameValue: genitiveNameValue,
-        genitiveNameXValue: genitiveNameXValue,
+      let dataToSend = {
+        url: linkValue,
+        activity: false,
+        filter: filterValue,
+        meta_title: metaTitleValue,
+        h1: h1Value,
+        meta_description: metaDescriptionValue,
+        gender: genderValue,
+        external_link: externalLinkValue,
+        genitive_name: genitiveNameValue,
+        genitive_name_x: genitiveNameXValue,
       }
-      copyList.push(newItem)
-      setTypesList(copyList)
-      setNameValue(null)
-      setLinkValue(null)
-      setValidated(false)
-      setFilterValue(null)
-      setMetaTitleValue(null)
-      setMetaDescriptionValue(null)
-      setH1Value(null)
-      setExternalLinkValue(null)
-      setGenitiveNameValue(null)
-      setGenitiveNameXValue(null)
-      setGenderValue(null)
-      form.reset()
+      Api.sendCategoriesItem(dataToSend)
+        .then((response) => {
+          console.log(response)
+          let copyList = [...typesList]
+          let newItem = {
+            id: response.data.data.id,
+            url: linkValue,
+            activity: false,
+            filter: filterValue,
+            meta_title: metaTitleValue,
+            h1: h1Value,
+            meta_description: metaDescriptionValue,
+            gender: genderValue,
+            external_link: externalLinkValue,
+            genitive_name: genitiveNameValue,
+            genitive_name_x: genitiveNameXValue,
+          }
+          copyList.push(newItem)
+          setTypesList(copyList)
+          setNameValue(null)
+          setLinkValue(null)
+          setValidated(false)
+          setFilterValue(null)
+          setMetaTitleValue(null)
+          setMetaDescriptionValue(null)
+          setH1Value(null)
+          setExternalLinkValue(null)
+          setGenitiveNameValue(null)
+          setGenitiveNameXValue(null)
+          setGenderValue(null)
+          form.reset()
+        })
+        .catch((error) => console.log(error))
     } else {
       setValidated(true)
     }
@@ -76,16 +93,26 @@ const TypesList = () => {
 
   const handleRemoveItem = (e) => {
     const id = e.target.dataset.id
-    let copyList = [...typesList]
-    copyList.splice(
-      copyList.findIndex((item) => item.id === id),
-      1,
-    )
-    setTypesList(copyList)
+    Api.deleteCategoriesItem(id)
+      .then((response) => {
+        console.log(response)
+        let copyList = [...typesList]
+        copyList.splice(
+          copyList.findIndex((item) => item.id === id),
+          1,
+        )
+        setTypesList(copyList)
+      })
+      .catch((error) => console.log(error))
   }
 
   useEffect(() => {
-    setTypesList(TYPES_LIST)
+    Api.getCategoriesList()
+      .then((response) => {
+        console.log(response)
+        setTypesList(response.data.data)
+      })
+      .catch((error) => console.log(error))
   }, [])
 
   return (
@@ -105,19 +132,6 @@ const TypesList = () => {
               onSubmit={handleSubmit}
             >
               <CRow className="gap-3">
-                <CCol sm="3" className="d-flex flex-column justify-content-end">
-                  <CFormInput
-                    type="text"
-                    id="name"
-                    aria-describedby="name"
-                    label="Название"
-                    placeholder="Название"
-                    feedbackValid="Заполнено"
-                    feedbackInvalid="Необходимо заполнить"
-                    required
-                    onChange={(e) => setNameValue(e.target.value)}
-                  />
-                </CCol>
                 <CCol sm="3" className="d-flex flex-column justify-content-end">
                   <CFormInput
                     type="text"
@@ -142,6 +156,19 @@ const TypesList = () => {
                     feedbackInvalid="Необходимо заполнить"
                     required
                     onChange={(e) => setMetaTitleValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormInput
+                    type="text"
+                    id="filterValue"
+                    aria-describedby="filterValue"
+                    label="filterValue"
+                    placeholder="filterValue"
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    required
+                    onChange={(e) => setFilterValue(e.target.value)}
                   />
                 </CCol>
                 <CCol sm="3" className="d-flex flex-column justify-content-end">
