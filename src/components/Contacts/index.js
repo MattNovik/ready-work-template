@@ -27,15 +27,15 @@ const Contacts = () => {
     if (form.checkValidity() === true) {
       let dataToSend = [
         {
-          name: 'entity',
+          name: 'organization_name',
           value: entityValue,
         },
         {
-          name: 'work-day',
+          name: 'work_time',
           value: workDayValue,
         },
         {
-          name: 'work-week-end',
+          name: 'work_time_we',
           value: workWeekEndValue,
         },
         {
@@ -55,7 +55,7 @@ const Contacts = () => {
           value: phoneValue,
         },
       ]
-      Api.sendSettings(dataToSend)
+      Api.sendSettingsContacts(dataToSend)
         .then((response) => console.log(response))
         .catch((error) => console.log(error))
       setValidated(false)
@@ -68,12 +68,12 @@ const Contacts = () => {
   }
 
   useEffect(() => {
-    Api.getListSettings()
+    Api.getListSettingsContacts()
       .then((response) => {
         console.log(response)
-        setEntityValue(response.data.data['entity'])
-        setWorkDayValue(response.data.data['work-day'])
-        setWorkWeekEndValue(response.data.data['work-week-end'])
+        setEntityValue(response.data.data['organization_name'])
+        setWorkDayValue(response.data.data['work_time'])
+        setWorkWeekEndValue(response.data.data['work_time_we'])
         setInnValue(response.data.data['inn'])
         setOgrnValue(response.data.data['ogrn'])
         setAdressValue(response.data.data['adress'])

@@ -11,6 +11,7 @@ import Api from 'src/Api/Api'
 
 const PriceListItem = (item, removeItem) => {
   const [imageFile, setImageFile] = useState(item.item.image)
+  const [deadLineValue, setDeadLineValue] = useState(item.item.deadline)
   const [nameValue, setNameValue] = useState(item.item.name)
   const [priceValue, setPriceValue] = useState(item.item.price)
   const [priceSnippetValue, setPriceSnippetValue] = useState(item.item['snippet_price'])
@@ -21,6 +22,7 @@ const PriceListItem = (item, removeItem) => {
 
     formData.append('name', nameValue)
     formData.append('price', priceValue)
+    formData.append('deadline', deadLineValue)
     formData.append('snippet_price', priceSnippetValue)
 
     Api.updateItemService(item.item.id, formData)
@@ -40,6 +42,14 @@ const PriceListItem = (item, removeItem) => {
           placeholder="Название услуги"
           value={nameValue}
           onChange={(e) => setNameValue(e.target.value)}
+        />
+      </CTableDataCell>
+      <CTableDataCell className="align-middle">
+        <CFormInput
+          type="text"
+          placeholder="deadline"
+          value={deadLineValue}
+          onChange={(e) => setDeadLineValue(e.target.value)}
         />
       </CTableDataCell>
       <CTableDataCell className="align-middle text-center">

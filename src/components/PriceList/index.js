@@ -24,6 +24,7 @@ const PriceList = () => {
   const [imageFile, setImageFile] = useState(null)
   const [nameValue, setNameValue] = useState(null)
   const [priceValue, setPriceValue] = useState(null)
+  const [deadLineValue, setDeadLineValue] = useState(null)
   const [priceSnippetValue, setPriceSnippetValue] = useState(null)
   const [listServices, setListServices] = useState(null)
   const [imageSrc, setImageSrc] = useState(null)
@@ -60,6 +61,7 @@ const PriceList = () => {
       formData.append('name', nameValue)
       formData.append('price', priceValue)
       formData.append('snippet_price', priceSnippetValue)
+      formData.append('deadline', deadLineValue)
       formData.append('image', imageFile)
 
       Api.sendNewService(formData)
@@ -68,9 +70,10 @@ const PriceList = () => {
           let copyList = [...listServices]
           let newItem = {
             id: response.data.data.id,
-            name: response.data.data,
-            price: response.data.data,
-            snippet_price: response.data.data,
+            deadline: response.data.data.deadline,
+            name: response.data.data.name,
+            price: response.data.data.price,
+            snippet_price: response.data.data.snippet_price,
             image: response.data.data.image,
           }
           copyList.push(newItem)
@@ -95,6 +98,7 @@ const PriceList = () => {
   useEffect(() => {
     Api.getListServices()
       .then((response) => {
+        console.log(response)
         setListServices(response.data.data)
       })
       .catch((error) => console.log(error))
@@ -149,6 +153,18 @@ const PriceList = () => {
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     onChange={(e) => setNameValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="auto" className="d-flex flex-column justify-content-end">
+                  <CFormLabel htmlFor="deadLineInput">Deadline</CFormLabel>
+                  <CFormInput
+                    type="text"
+                    id="deadLineInput"
+                    placeholder="Deadline"
+                    required
+                    feedbackValid="Заполнено"
+                    feedbackInvalid="Необходимо заполнить"
+                    onChange={(e) => setDeadLineValue(e.target.value)}
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">

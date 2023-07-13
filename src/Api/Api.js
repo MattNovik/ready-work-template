@@ -21,17 +21,17 @@ export default {
   deleteItemService(id) {
     return apiClient.delete('/services/' + id)
   },
-  getListSettings() {
-    return apiClient.get('/settings')
+  getListSettingsContacts() {
+    return apiClient.get('/settings/contacts')
   },
-  sendSettings(payload) {
-    return apiClient.post('/settings', payload)
+  sendSettingsContacts(payload) {
+    return apiClient.post('/settings/contacts', payload)
   },
-  updateItemSettings(name, payload) {
-    return apiClient.put('/settings/' + name, payload)
+  updateItemSettingsContacts(name, payload) {
+    return apiClient.put('/settings/contacts/' + name, payload)
   },
-  deleteItemSettings(name) {
-    return apiClient.delete('/settings/' + name)
+  deleteItemSettingsContacts(name) {
+    return apiClient.delete('/settings/contacts/' + name)
   },
   getCategoriesList() {
     return apiClient.get('/categories/')
