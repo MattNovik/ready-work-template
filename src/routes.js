@@ -1,4 +1,5 @@
-import { element } from 'prop-types'
+import PriceListEditItem from './components/PriceList/PriceListItemEdit'
+import TypesListEditItem from './components/TypesList/TypesListEditItem'
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
@@ -58,8 +59,6 @@ const TypesList = React.lazy(() => import('./components/TypesList'))
 const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
 const PigsFarmSettings = React.lazy(() => import('./components/PigsFarmSettings'))
 const PagesList = React.lazy(() => import('./components/PagesList'))
-const TypesListEditItem = React.lazy(() => import('./components/TypesList/TypesListEditItem'))
-const PriceListEditItem = React.lazy(() => import('./components/PriceList/PriceListItemEdit'))
 const BottomMenu = React.lazy(() => import('./components/BottomMenu'))
 const SearchPhrases = React.lazy(() => import('./components/SearchPhrases'))
 

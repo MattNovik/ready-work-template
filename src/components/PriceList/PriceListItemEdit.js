@@ -13,7 +13,7 @@ import {
 } from '@coreui/react'
 import Api from 'src/Api/Api'
 
-const TypesListEditItem = (item) => {
+const PriceListEditItem = (item) => {
   let { id } = useParams()
   const [imageFile, setImageFile] = useState(null)
   const [nameValue, setNameValue] = useState(null)
@@ -243,4 +243,4 @@ const TypesListEditItem = (item) => {
   )
 }
 
-export default TypesListEditItem
+export default PriceListEditItem
