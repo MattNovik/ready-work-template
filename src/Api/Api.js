@@ -48,6 +48,12 @@ export default {
   deleteCategoriesItem(id) {
     return apiClient.delete('/categories/' + id)
   },
+  getDocumentsList() {
+    return apiClient.get('/documents/')
+  },
+  sendDocumentItem(name, payload) {
+    return apiClient.post('/documents/' + name, payload)
+  },
   /* async getStartdata() {
     return await apiClient.get('/api/v1/user/start')
   },

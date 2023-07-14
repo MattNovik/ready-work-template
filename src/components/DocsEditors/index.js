@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { CRow, CCol, CCard, CCardHeader, CCardBody, CButton } from '@coreui/react'
 import { Editor } from '@tinymce/tinymce-react'
+import Api from 'src/Api/Api'
 
 const DocsEditor = () => {
   const [docValue, setDocValue] = useState(null)
@@ -13,26 +14,73 @@ const DocsEditor = () => {
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent())
+      let dataToSend = {
+        text: editorRef.current.getContent(),
+      }
+      Api.sendDocumentItem('policy', dataToSend)
+        .then((response) => {
+          alert('Удачно')
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('Ошибка')
+          console.log(error)
+        })
     }
   }
 
   const logOfferta = () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent())
+      console.log(editorOffertRef.current.getContent())
+      let dataToSend = {
+        text: editorOffertRef.current.getContent(),
+      }
+      Api.sendDocumentItem('offer', dataToSend)
+        .then((response) => {
+          alert('Удачно')
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('Ошибка')
+          console.log(error)
+        })
     }
   }
 
   const logSome = () => {
     if (editorSomeRef.current) {
       console.log(editorSomeRef.current.getContent())
+      let dataToSend = {
+        text: editorSomeRef.current.getContent(),
+      }
+      Api.sendDocumentItem('safe-payment', dataToSend)
+        .then((response) => {
+          alert('Удачно')
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('Ошибка')
+          console.log(error)
+        })
     }
   }
+
+  useEffect(() => {
+    Api.getDocumentsList()
+      .then((response) => {
+        setDocValue(response.data.data.policy)
+        setSomeValue(response.data.data.safe.payment)
+        setOffertaValue(response.data.data.offer)
+        console.log(response)
+      })
+      .catch((error) => console.log(error))
+  }, [])
   return (
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Документ Договор</strong>
+            <strong>Документ Политика конфиденциальности</strong>
           </CCardHeader>
           <CCardBody className="d-flex flex-column gap-3">
             <p className="text-medium-emphasis small">Здесь вы можете изменить договор</p>
@@ -97,7 +145,7 @@ const DocsEditor = () => {
         </CCard>
         <CCard className="mb-4 ">
           <CCardHeader>
-            <strong>Документы</strong>
+            <strong>Документ Безопасность платежей</strong>
           </CCardHeader>
           <CCardBody className="d-flex flex-column gap-3">
             <p className="text-medium-emphasis small">Здесь вы можете изменить</p>
