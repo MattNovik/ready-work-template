@@ -8,6 +8,7 @@ import {
   CButton,
 } from '@coreui/react'
 import Api from 'src/Api/Api'
+import { Link } from 'react-router-dom'
 
 const PriceListItem = (item, removeItem) => {
   const [imageFile, setImageFile] = useState(item.item.image)
@@ -71,14 +72,21 @@ const PriceListItem = (item, removeItem) => {
       <CTableDataCell className="align-middle text-center">
         <img src={imageSrc} width="60" height="60" alt="" className="price-list__image" />
       </CTableDataCell>
-      <CTableHeaderCell className="align-middle text-center">
+      <CTableDataCell className="align-middle text-center">
         <CButton type="button" onClick={() => handleSubmit()}>
           Сохранить
         </CButton>
-      </CTableHeaderCell>
-      <CTableHeaderCell className="align-middle text-center">
+      </CTableDataCell>
+      <CTableDataCell className="align-middle text-center">
+        <CButton type="button">
+          <Link to={'/price-list/edit/' + item.item.id} className="text-light text-decoration-none">
+            Изменить
+          </Link>
+        </CButton>
+      </CTableDataCell>
+      <CTableDataCell className="align-middle text-center">
         <CCloseButton data-id={item.item.id} onClick={(e) => item.removeItem(e)} />
-      </CTableHeaderCell>
+      </CTableDataCell>
     </CTableRow>
   )
 }

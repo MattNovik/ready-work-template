@@ -59,6 +59,7 @@ const DocsEditor = React.lazy(() => import('./components/DocsEditors'))
 const PigsFarmSettings = React.lazy(() => import('./components/PigsFarmSettings'))
 const PagesList = React.lazy(() => import('./components/PagesList'))
 const TypesListEditItem = React.lazy(() => import('./components/TypesList/TypesListEditItem'))
+const PriceListEditItme = React.lazy(() => import('./components/PriceList/PriceListItemEdit'))
 const BottomMenu = React.lazy(() => import('./components/BottomMenu'))
 const SearchPhrases = React.lazy(() => import('./components/SearchPhrases'))
 
@@ -108,16 +109,16 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/price-list', name: 'Список услуг и цен', element: PriceList },
+  {
+    path: '/price-list/edit/:id',
+    name: 'Услуга -редактирование',
+    element: PriceListEditItme,
+  },
   { path: '/contacts', name: 'Контакты', element: Contacts },
   { path: '/types-list', name: 'Типы работ', element: TypesList },
   {
     path: '/types-list/edit',
     name: 'Редактирование',
-    element: TypesListEditItem,
-  },
-  {
-    path: '/types-list/edit/:id',
-    name: 'Тип работы-редактирование',
     element: TypesListEditItem,
   },
   { path: '/docs-editor', name: 'Документы', element: DocsEditor },

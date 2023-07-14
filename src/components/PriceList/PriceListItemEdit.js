@@ -1,26 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import {
   CRow,
   CCol,
   CCard,
   CCardHeader,
   CCardBody,
-  CTableHeaderCell,
-  CTableRow,
-  CTableDataCell,
-  CTableBody,
-  CTable,
-  CTableHead,
   CForm,
-  CFormLabel,
   CFormInput,
+  CFormLabel,
   CButton,
 } from '@coreui/react'
-import { SERVICES_LIST } from 'src/mockData'
-import PriceListItem from './PriceListItem'
 import Api from 'src/Api/Api'
 
-const PriceList = () => {
+const TypesListEditItem = (item) => {
+  let { id } = useParams()
   const [imageFile, setImageFile] = useState(null)
   const [nameValue, setNameValue] = useState(null)
   const [priceValue, setPriceValue] = useState(null)
@@ -34,27 +28,6 @@ const PriceList = () => {
   const [validated, setValidated] = useState(false)
   const refForm = useRef(null)
   const [inputTypeFileValid, setInputTypeFileValid] = useState(null)
-
-  const preloadImage = (e) => {
-    const [file] = e.target.files
-    setImageFile(file)
-    setImageSrc(URL.createObjectURL(file))
-  }
-
-  const removeItem = (e) => {
-    const id = e.target.closest('button').dataset.id
-    Api.deleteItemService(id)
-      .then((response) => {
-        console.log(response)
-        let copyList = [...listServices]
-        copyList.splice(
-          copyList.findIndex((item) => item.id === id),
-          1,
-        )
-        setListServices(copyList)
-      })
-      .catch((error) => console.log(error))
-  }
 
   const handleSubmit = (e) => {
     const form = e.currentTarget
@@ -107,11 +80,24 @@ const PriceList = () => {
     e.stopPropagation()
   }
 
+  const preloadImage = (e) => {
+    const [file] = e.target.files
+    setImageFile(file)
+    setImageSrc(URL.createObjectURL(file))
+  }
+
   useEffect(() => {
-    Api.getListServices()
+    Api.getItemServices(id)
       .then((response) => {
         console.log(response)
-        setListServices(response.data.data)
+        setNameValue(response.data.data.h1)
+        setMetaTitleValue(response.data.data.meta_title)
+        setMetaDescriptionValue(response.data.data.meta_description)
+        setH1Value(response.data.data.h1)
+        setPriceSnippetValue(response.data.data.snippet_price)
+        setPriceValue(response.data.data.price)
+        setDeadLineValue(response.data.data.deadline)
+        setImageSrc(response.data.data.image)
       })
       .catch((error) => console.log(error))
   }, [])
@@ -121,12 +107,9 @@ const PriceList = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Список цен и услуг</strong>
+            <strong>{'Редактирование - ' + nameValue}</strong>
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">
-              Здесь вы можете создать новые типы услуг или изменить уже существующие
-            </p>
             <CForm noValidate validated={validated} onSubmit={handleSubmit} ref={refForm}>
               <CRow className="gap-3">
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
@@ -164,6 +147,7 @@ const PriceList = () => {
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={nameValue}
                     onChange={(e) => setNameValue(e.target.value)}
                   />
                 </CCol>
@@ -173,8 +157,10 @@ const PriceList = () => {
                     type="text"
                     id="deadLineInput"
                     placeholder="Deadline"
+                    required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={deadLineValue}
                     onChange={(e) => setDeadLineValue(e.target.value)}
                   />
                 </CCol>
@@ -187,6 +173,7 @@ const PriceList = () => {
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={h1Value}
                     onChange={(e) => setH1Value(e.target.value)}
                   />
                 </CCol>
@@ -196,8 +183,10 @@ const PriceList = () => {
                     type="text"
                     id="metaTitleInput"
                     placeholder="meatTitle"
+                    required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={metaTitleValue}
                     onChange={(e) => setMetaTitleValue(e.target.value)}
                   />
                 </CCol>
@@ -207,8 +196,10 @@ const PriceList = () => {
                     type="text"
                     id="metaDescriptionInput"
                     placeholder="metaDescription"
+                    required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={metaDescriptioValue}
                     onChange={(e) => setMetaDescriptionValue(e.target.value)}
                   />
                 </CCol>
@@ -221,6 +212,7 @@ const PriceList = () => {
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={priceValue}
                     onChange={(e) => setPriceValue(e.target.value)}
                   />
                 </CCol>
@@ -233,6 +225,7 @@ const PriceList = () => {
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    value={priceSnippetValue}
                     onChange={(e) => setPriceSnippetValue(e.target.value)}
                   />
                 </CCol>
@@ -241,41 +234,6 @@ const PriceList = () => {
                 </CCol>
               </CRow>
             </CForm>
-            <CTable>
-              <CTableHead>
-                <CTableRow>
-                  <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Deadline</CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
-                    Цена
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
-                    Цена в сниппете
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
-                    Изображение
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
-                </CTableRow>
-              </CTableHead>
-              <CTableBody>
-                {listServices && listServices.length ? (
-                  listServices.map((item, index) => (
-                    <PriceListItem key={index} item={item} removeItem={removeItem} />
-                  ))
-                ) : (
-                  <CTableRow>
-                    <CTableHeaderCell scope="row" className="align-middle"></CTableHeaderCell>
-                    <CTableDataCell colSpan={5} className="text-center">
-                      Пустой список
-                    </CTableDataCell>
-                  </CTableRow>
-                )}
-              </CTableBody>
-            </CTable>
           </CCardBody>
         </CCard>
       </CCol>
@@ -283,4 +241,4 @@ const PriceList = () => {
   )
 }
 
-export default PriceList
+export default TypesListEditItem
