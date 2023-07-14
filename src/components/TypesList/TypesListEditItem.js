@@ -11,7 +11,7 @@ import {
   CFormSelect,
   CButton,
 } from '@coreui/react'
-import { TYPES_LIST, GENDER_LIST } from 'src/mockData'
+import { GENDER_LIST } from 'src/mockData'
 import Api from 'src/Api/Api'
 
 const TypesListEditItem = () => {
@@ -73,7 +73,10 @@ const TypesListEditItem = () => {
         setGenitiveNameValue(response.data.data.genitive_name)
         setGenitiveNameXValue(response.data.data.genitive_name_x)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        alert('Ошибка')
+        console.log(error)
+      })
   }, [])
 
   return (

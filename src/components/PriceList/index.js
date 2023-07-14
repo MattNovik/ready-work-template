@@ -98,8 +98,12 @@ const PriceList = () => {
 
           setValidated(false)
           form.reset()
+          alert('Удачно')
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          alert('Ошибка')
+          console.log(error)
+        })
     } else {
       setValidated(true)
     }

@@ -38,8 +38,14 @@ const Contacts = () => {
         },
       }
       Api.sendSettingsContacts(dataToSend)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error))
+        .then((response) => {
+          alert('Удачно')
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('Ошибка')
+          console.log(error)
+        })
       setValidated(false)
       form.reset()
     } else {
