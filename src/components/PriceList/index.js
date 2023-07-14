@@ -251,17 +251,17 @@ const PriceList = () => {
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Deadline(цена и срок)</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Deadline (цена и срок)</CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
                     Цена в сниппете(калькулятор)
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Заголовок
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
                     Цена
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Изображение
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>

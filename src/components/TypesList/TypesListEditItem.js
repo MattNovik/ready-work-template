@@ -10,6 +10,8 @@ import {
   CFormInput,
   CFormSelect,
   CButton,
+  CFormCheck,
+  CFormLabel,
 } from '@coreui/react'
 import { GENDER_LIST } from 'src/mockData'
 import Api from 'src/Api/Api'
@@ -18,6 +20,7 @@ const TypesListEditItem = () => {
   let { id } = useParams()
   const [nameValue, setNameValue] = useState(null)
   const [linkValue, setLinkValue] = useState(null)
+  const [activityValue, setActivityValue] = useState(null)
   const [validated, setValidated] = useState(false)
   const [filterValue, setFilterValue] = useState(null)
   const [metaTitleValue, setMetaTitleValue] = useState(null)
@@ -35,7 +38,7 @@ const TypesListEditItem = () => {
     if (form.checkValidity() === true) {
       let dataToSend = {
         url: linkValue,
-        activity: false,
+        activity: activityValue,
         filter: filterValue,
         meta_title: metaTitleValue,
         h1: h1Value,
@@ -58,12 +61,17 @@ const TypesListEditItem = () => {
     e.stopPropagation()
   }
 
+  const handleChangeActivity = () => {
+    setActivityValue(!activityValue)
+  }
+
   useEffect(() => {
     Api.getCategoriesItem(id)
       .then((response) => {
         console.log(response)
         setNameValue(response.data.data.h1)
         setLinkValue(response.data.data.url)
+        setActivityValue(response.data.data.activity)
         setFilterValue(response.data.data.filter)
         setMetaTitleValue(response.data.data.meta_title)
         setMetaDescriptionValue(response.data.data.meta_description)
@@ -217,6 +225,14 @@ const TypesListEditItem = () => {
                     required
                     value={genitiveNameValue}
                     onChange={(e) => setGenitiveNameValue(e.target.value)}
+                  />
+                </CCol>
+                <CCol sm="3" className="d-flex flex-column justify-content-end">
+                  <CFormLabel htmlFor="activityInput">Активность</CFormLabel>
+                  <CFormCheck
+                    id={'activityInput'}
+                    onChange={handleChangeActivity}
+                    defaultChecked={!!activityValue}
                   />
                 </CCol>
                 <CCol sm="3" className="d-flex align-items-center">

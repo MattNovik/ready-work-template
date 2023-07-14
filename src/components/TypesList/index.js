@@ -264,7 +264,7 @@ const TypesList = () => {
                   <CTableHeaderCell scope="col" className="text-start">
                     Ссылка
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Активность
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-start"></CTableHeaderCell>

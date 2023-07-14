@@ -155,19 +155,19 @@ const PagesList = () => {
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Текст
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Мета название
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Мета описание
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Заголовок
                   </CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Активность
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>

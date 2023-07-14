@@ -116,7 +116,7 @@ const SearchPhrases = () => {
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col" className="text-center">
+                  <CTableHeaderCell scope="col" className="text-start">
                     Ссылка
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center"></CTableHeaderCell>
