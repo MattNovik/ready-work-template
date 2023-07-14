@@ -25,36 +25,18 @@ const Contacts = () => {
   const handleSubmit = (e) => {
     const form = e.currentTarget
     if (form.checkValidity() === true) {
-      let dataToSend = [
-        {
-          name: 'organization_name',
-          value: entityValue,
+      let dataToSend = {
+        name: 'contacts',
+        value: {
+          inn: innValue,
+          ogrn: ogrnValue,
+          phone: phoneValue,
+          address: adressValue,
+          work_time: workDayValue,
+          work_time_we: workWeekEndValue,
+          organization_name: entityValue,
         },
-        {
-          name: 'work_time',
-          value: workDayValue,
-        },
-        {
-          name: 'work_time_we',
-          value: workWeekEndValue,
-        },
-        {
-          name: 'inn',
-          value: innValue,
-        },
-        {
-          name: 'ogrn',
-          value: ogrnValue,
-        },
-        {
-          name: 'adress',
-          value: adressValue,
-        },
-        {
-          name: 'phone',
-          value: phoneValue,
-        },
-      ]
+      }
       Api.sendSettingsContacts(dataToSend)
         .then((response) => console.log(response))
         .catch((error) => console.log(error))

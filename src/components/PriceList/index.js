@@ -134,7 +134,7 @@ const PriceList = () => {
                   <CFormInput
                     type="file"
                     id="imageLoad"
-                    accept="image/png, image/gif, image/jpeg, image/svg, image/jpg"
+                    accept="image/png, image/gif, image/jpeg, image/svg+xml, image/jpg"
                     aria-describedby="imageLoad"
                     feedbackValid="Загружено"
                     feedbackInvalid="Необходимо загрузить"
@@ -175,6 +175,7 @@ const PriceList = () => {
                     placeholder="Deadline"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
+                    required
                     onChange={(e) => setDeadLineValue(e.target.value)}
                   />
                 </CCol>
@@ -248,10 +249,13 @@ const PriceList = () => {
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Deadline</CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Цена
+                    Цена в сниппете
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Цена в сниппете
+                    Заголово
+                  </CTableHeaderCell>
+                  <CTableHeaderCell scope="col" className="text-center">
+                    Цена
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
                     Изображение

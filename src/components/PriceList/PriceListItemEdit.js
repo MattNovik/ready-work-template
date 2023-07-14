@@ -183,7 +183,6 @@ const TypesListEditItem = (item) => {
                     type="text"
                     id="metaTitleInput"
                     placeholder="meatTitle"
-                    required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     value={metaTitleValue}
@@ -196,7 +195,6 @@ const TypesListEditItem = (item) => {
                     type="text"
                     id="metaDescriptionInput"
                     placeholder="metaDescription"
-                    required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     value={metaDescriptioValue}
