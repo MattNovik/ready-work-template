@@ -65,7 +65,7 @@ const PriceListItem = (item, removeItem) => {
       <CTableDataCell className="align-middle">
         <CFormInput
           type="text"
-          placeholder="deadline"
+          placeholder="deadline (цена и срок)"
           required
           value={deadLineValue}
           onChange={(e) => setDeadLineValue(e.target.value)}
@@ -92,7 +92,7 @@ const PriceListItem = (item, removeItem) => {
       <CTableDataCell className="align-middle text-center">
         <CFormInput
           type="text"
-          placeholder="Цена в сниппете"
+          placeholder="Цена в сниппете(калькулятор)"
           required
           value={priceSnippetValue}
           onChange={(e) => setPriceSnippetValue(e.target.value)}

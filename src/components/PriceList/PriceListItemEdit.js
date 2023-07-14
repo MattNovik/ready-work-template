@@ -156,11 +156,11 @@ const PriceListEditItem = (item) => {
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="deadLineInput">Deadline</CFormLabel>
+                  <CFormLabel htmlFor="deadLineInput">Deadline (цена и срок)</CFormLabel>
                   <CFormInput
                     type="text"
                     id="deadLineInput"
-                    placeholder="Deadline"
+                    placeholder="Deadline (цена и срок)"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
@@ -219,11 +219,11 @@ const PriceListEditItem = (item) => {
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="priceSnippetInput">Цена в сниппет</CFormLabel>
+                  <CFormLabel htmlFor="priceSnippetInput">Цена в сниппет(калькулятор)</CFormLabel>
                   <CFormInput
                     type="text"
                     id="priceSnippetInput"
-                    placeholder="Цена в сниппет"
+                    placeholder="Цена в сниппет(калькулятор)"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"

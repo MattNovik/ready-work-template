@@ -172,11 +172,11 @@ const PriceList = () => {
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="deadLineInput">Deadline</CFormLabel>
+                  <CFormLabel htmlFor="deadLineInput">Deadline(цена и срок)</CFormLabel>
                   <CFormInput
                     type="text"
                     id="deadLineInput"
-                    placeholder="Deadline"
+                    placeholder="Deadline(цена и срок)"
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
                     required
@@ -230,11 +230,11 @@ const PriceList = () => {
                   />
                 </CCol>
                 <CCol sm="auto" className="d-flex flex-column justify-content-end">
-                  <CFormLabel htmlFor="priceSnippetInput">Цена в сниппет</CFormLabel>
+                  <CFormLabel htmlFor="priceSnippetInput">Цена в сниппете(калькулятор)</CFormLabel>
                   <CFormInput
                     type="text"
                     id="priceSnippetInput"
-                    placeholder="Цена в сниппет"
+                    placeholder="Цена в сниппете(калькулятор)"
                     required
                     feedbackValid="Заполнено"
                     feedbackInvalid="Необходимо заполнить"
@@ -251,12 +251,12 @@ const PriceList = () => {
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Название</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Deadline</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Deadline(цена и срок)</CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Цена в сниппете
+                    Цена в сниппете(калькулятор)
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
-                    Заголово
+                    Заголовок
                   </CTableHeaderCell>
                   <CTableHeaderCell scope="col" className="text-center">
                     Цена
