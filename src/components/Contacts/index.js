@@ -64,7 +64,7 @@ const Contacts = () => {
         setWorkWeekEndValue(response.data.data['work_time_we'])
         setInnValue(response.data.data['inn'])
         setOgrnValue(response.data.data['ogrn'])
-        setAdressValue(response.data.data['adress'])
+        setAdressValue(response.data.data['address'])
         setPhoneValue(response.data.data['phone'])
       })
       .catch((error) => console.log(error))
